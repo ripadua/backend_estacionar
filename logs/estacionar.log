@@ -1,0 +1,8 @@
+{"level":"info","message":"::1 - - [23/May/2017:00:02:33 +0000] \"GET /usuarios HTTP/1.1\" 200 3\n","timestamp":"2017-05-23T00:02:33.740Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:25:47 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 400 118\n","timestamp":"2017-05-23T00:25:47.378Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:27:07 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 400 118\n","timestamp":"2017-05-23T00:27:07.723Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:27:23 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 400 118\n","timestamp":"2017-05-23T00:27:23.171Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:27:34 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 400 118\n","timestamp":"2017-05-23T00:27:34.795Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:30:34 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 400 118\n","timestamp":"2017-05-23T00:30:34.516Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:32:39 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 500 2142\n","timestamp":"2017-05-23T00:32:39.850Z"}
+{"level":"info","message":"::1 - - [23/May/2017:00:32:44 +0000] \"POST /usuarios/autenticarUsuario HTTP/1.1\" 500 2142\n","timestamp":"2017-05-23T00:32:44.172Z"}

@@ -1,0 +1,29 @@
+{
+  "name": "backend_estacionar",
+  "version": "1.0.0",
+  "description": "Backend do aplicativo Estacionar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "engines": {
+    "node": "6.9.4"
+  },
+  "keywords": [
+    "estacionar",
+    "ionic",
+    "app"
+  ],
+  "author": "ripadua7@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "consign": "^0.1.4",
+    "express": "^4.15.3",
+    "express-validator": "^3.2.0",
+    "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "winston": "^2.3.1"
+  }
+}
