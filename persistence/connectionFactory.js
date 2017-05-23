@@ -23,9 +23,9 @@ function createDBConnection() {
 		return mysql.createConnection({
 			connectionLimit: 10,
 			host : 'us-cdbr-iron-east-03.cleardb.net',
-			user : 'baeccbdddd1956',
-			password : '6b3ab70d',
-			database : 'heroku_2e29aadf5b10c4b'
+			user : 'bef9b42036ce99',
+			password : '5ceab37f',
+			database : 'heroku_354030aedb907ef'
 		});
 	}
 }
