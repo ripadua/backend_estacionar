@@ -1,13 +1,14 @@
 var mysql = require('mysql');
 
-function createDBConnection() {
+function createDBPoolConnection() {
 	if (!process.env.NODE_ENV) {
-		return mysql.createConnection({
-			host : 'localhost',
-			user : 'root',
-			password : 'admin',
-			database : 'estacionar'
-		});	
+		return mysql.createPool({
+			connectionLimit: 10,
+			host : 'us-cdbr-iron-east-03.cleardb.net',
+			user : 'bef9b42036ce99',
+			password : '5ceab37f',
+			database : 'heroku_354030aedb907ef'
+		});
 	}
 
 	if (process.env.NODE_ENV == 'test') {
@@ -32,5 +33,5 @@ function createDBConnection() {
 
 //wrapper    
 module.exports = function() {
-	return createDBConnection;
+	return createDBPoolConnection;
 }	

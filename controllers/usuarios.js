@@ -31,11 +31,15 @@ module.exports = function(app) {
 				console.log('Erro ao autenticar usuario: ' + erro);
 				res.status(500).send(erro);
 			} else {
-				
-				if (resultado) {
-					res.status(200).send(resultado);
+				console.log(resultado);
+				if (resultado.length > 0) {
+					if (resultado[0].ativo) {
+						res.status(200).send(resultado[0]);
+					} else {
+						res.status(402).send();
+					}
 				} else {
-					res.status(403).send();
+					res.status(401).send();
 				}
 
 			}
