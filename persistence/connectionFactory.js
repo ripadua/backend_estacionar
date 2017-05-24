@@ -21,7 +21,7 @@ function createDBPoolConnection() {
 	}
 
 	if (process.env.NODE_ENV == 'production') {
-		return mysql.createConnection({
+		return mysql.createPool({
 			connectionLimit: 10,
 			host : 'us-cdbr-iron-east-03.cleardb.net',
 			user : 'bef9b42036ce99',
