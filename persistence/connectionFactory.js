@@ -4,10 +4,10 @@ function createDBPoolConnection() {
 	if (!process.env.NODE_ENV) {
 		return mysql.createPool({
 			connectionLimit: 10,
-			host : 'us-cdbr-iron-east-03.cleardb.net',
-			user : 'bef9b42036ce99',
-			password : '5ceab37f',
-			database : 'heroku_354030aedb907ef'
+			host : 'localhost',
+			user : 'root',
+			password : 'admin',
+			database : 'estacionar'
 		});
 	}
 
