@@ -15,7 +15,7 @@ module.exports = function(app) {
 				console.log('Erro ao consultar estacionamento: ' + erro);
 				res.status(500).send(erro);
 			} else {
-				res.status(200).send(resultado);
+				res.status(200).json(resultado);
 			}
 		});
 	});
@@ -33,7 +33,7 @@ module.exports = function(app) {
 				console.log('Erro ao consultar valores de estacionamento: ' + erro);
 				res.status(500).send(erro);
 			} else {
-				res.status(200).send(resultado);
+				res.status(200).json(resultado);
 			}
 		});
 
@@ -42,9 +42,31 @@ module.exports = function(app) {
 	app.post('/estacionamentos', function(req, res){
 		console.log('Processando uma inclusão de estacionamento.');
 
-		req.assert("estacionamento.veiculo", "O tipo de veiculo é obrigatório.").notEmpty();
-		req.assert("estacionamento.placa", "A placa é obrigatória").notEmpty().len(7,7);
-		req.assert("estacionamento.datahora_entrada", "A data e hora de entrada é obrigatória").notEmpty();
-		req.assert("estacionamento.cartao", "O número do cartão é obrigatório").notEmpty();
+		req.assert("estacionamento.nome", "O nome do estacionamento é obrigatório.").notEmpty();
+		req.assert("estacionamento.id_usuario", "O usuário é obrigatório").notEmpty();
+
+		var erros = req.validationErrors();
+
+		if (erros) {
+			console.log('Erros de validação encontrados.');
+			res.status(400).send(erros);
+			return;
+		}
+
+		var estacionamento = req.body["estacionamento"];
+
+		var connection = app.persistence.connectionFactory();
+		var estacionamentoDAO = new app.persistence.EstacionamentoDAO(connection);
+
+		estacionamentoDAO.salva(estacionamento, function(erro, resultado){
+			if (erro) {
+				console.log('Erro ao criar estacionamento: ' + erro);
+				res.status(500).send(erro);
+			} else {
+				console.log('Estacionamento criado');
+				estacionamento.id = resultado.insertId;
+				res.status(201).json(resultado);
+			}
+		});
 	});
 };
