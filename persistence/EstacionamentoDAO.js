@@ -8,6 +8,12 @@ EstacionamentoDAO.prototype.salva = function(estacionamento, callback) {
 	});
 }
 
+EstacionamentoDAO.prototype.salvaValores = function(estacionamentoValores, callback) {
+	this._pool.getConnection(function(err, connection){
+		connection.query('INSERT INTO estacionamentos_valores SET ?', estacionamentoValores, callback);
+	});
+}
+
 EstacionamentoDAO.prototype.atualiza = function(estacionamento, callback) {
 	this._pool.getConnection(function(err, connection){
 		connection.query('UPDATE estacionamentos SET status = ? WHERE id = ?', [estacionamento.status, estacionamento.id], callback);

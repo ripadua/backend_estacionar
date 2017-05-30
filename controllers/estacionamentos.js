@@ -54,6 +54,22 @@ module.exports = function(app) {
 		}
 
 		var estacionamento = req.body["estacionamento"];
+		var estacionamentoValores =[];
+
+		if (estacionamento.Carro) {
+			estacionamentoValores.push(estacionamento.Carro);
+			delete estacionamento.Carro;
+		}
+
+		if (estacionamento.Caminhonete) {
+			estacionamentoValores.push(estacionamento.Caminhonete);
+			delete estacionamento.Caminhonete;
+		}
+
+		if (estacionamento.Moto) {
+			estacionamentoValores.push(estacionamento.Moto);
+			delete estacionamento.Moto;
+		}
 
 		var connection = app.persistence.connectionFactory();
 		var estacionamentoDAO = new app.persistence.EstacionamentoDAO(connection);
@@ -65,6 +81,17 @@ module.exports = function(app) {
 			} else {
 				console.log('Estacionamento criado');
 				estacionamento.id = resultado.insertId;
+
+				for (var x in estacionamentoValores) {
+					estacionamentoValores[x].id_estacionamento = estacionamento.id;
+
+					var connection = app.persistence.connectionFactory();
+					var estacionamentoDAO = new app.persistence.EstacionamentoDAO(connection);
+
+					estacionamentoDAO.salvaValores(estacionamentoValores[x], function(erroValores, resultadoValores){
+
+					});
+				}
 				res.status(201).json(resultado);
 			}
 		});
