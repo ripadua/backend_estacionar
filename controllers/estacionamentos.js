@@ -54,42 +54,40 @@ module.exports = function(app) {
 		}
 
 		var estacionamento = req.body["estacionamento"];
-		var estacionamentoValores =[];
-
-		if (estacionamento.Carro) {
-			estacionamentoValores.push(estacionamento.Carro);
-			delete estacionamento.Carro;
-		}
-
-		if (estacionamento.Caminhonete) {
-			estacionamentoValores.push(estacionamento.Caminhonete);
-			delete estacionamento.Caminhonete;
-		}
-
-		if (estacionamento.Moto) {
-			estacionamentoValores.push(estacionamento.Moto);
-			delete estacionamento.Moto;
+		
+		if (estacionamento.id) {
+			estacionamento.datahora_alteracao = new Date();
+			delete estacionamento.datahora_inclusao;
+		} else {
+			estacionamento.datahora_inclusao = new Date();
 		}
 
 		var connection = app.persistence.connectionFactory();
 		var estacionamentoDAO = new app.persistence.EstacionamentoDAO(connection);
+
+		var estacionamentoValores = estacionamento.estacionamentoValores;
+		delete estacionamento.estacionamentoValores;
 
 		estacionamentoDAO.salva(estacionamento, function(erro, resultado){
 			if (erro) {
 				console.log('Erro ao criar estacionamento: ' + erro);
 				res.status(500).send(erro);
 			} else {
-				console.log('Estacionamento criado');
-				estacionamento.id = resultado.insertId;
+				if (resultado.insertId) {
+					estacionamento.id = resultado.insertId;
+				}
 
 				for (var x in estacionamentoValores) {
 					estacionamentoValores[x].id_estacionamento = estacionamento.id;
+					delete estacionamentoValores[x].descricao;
 
 					var connection = app.persistence.connectionFactory();
 					var estacionamentoDAO = new app.persistence.EstacionamentoDAO(connection);
 
 					estacionamentoDAO.salvaValores(estacionamentoValores[x], function(erroValores, resultadoValores){
-
+						if (erroValores) {
+							console.log('Erro ao criar Valores: ' + erroValores);
+						}
 					});
 				}
 				res.status(201).json(resultado);

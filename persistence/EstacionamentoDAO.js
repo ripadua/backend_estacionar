@@ -4,13 +4,21 @@ function EstacionamentoDAO(pool) {
 
 EstacionamentoDAO.prototype.salva = function(estacionamento, callback) {
 	this._pool.getConnection(function(err, connection){
-		connection.query('INSERT INTO estacionamentos SET ?', estacionamento, callback);
+		if (estacionamento.id) {
+			connection.query('UPDATE estacionamentos SET ? WHERE id = ?', [estacionamento, estacionamento.id], callback);
+		} else {
+			connection.query('INSERT INTO estacionamentos SET ?', estacionamento, callback);
+		}
 	});
 }
 
 EstacionamentoDAO.prototype.salvaValores = function(estacionamentoValores, callback) {
 	this._pool.getConnection(function(err, connection){
-		connection.query('INSERT INTO estacionamentos_valores SET ?', estacionamentoValores, callback);
+		if (estacionamentoValores.id) {
+			connection.query('UPDATE estacionamentos_valores SET ? WHERE id = ?', [estacionamentoValores, estacionamentoValores.id], callback);
+		} else {
+			connection.query('INSERT INTO estacionamentos_valores SET ?', estacionamentoValores, callback);
+		}
 	});
 }
 
@@ -34,13 +42,13 @@ EstacionamentoDAO.prototype.buscaPorId = function(id, callback) {
 
 EstacionamentoDAO.prototype.listaPorIdUsuario = function(id_usuario, callback) {
 	this._pool.getConnection(function(err, connection){
-		connection.query('SELECT * FROM estacionamentos WHERE id_usuario = ?', id_usuario, callback);
+		connection.query('SELECT distinct * FROM estacionamentos WHERE id_usuario = ?', id_usuario, callback);
 	});
 }
 
 EstacionamentoDAO.prototype.listaValoresPorIdEstacionamento = function(id_estacionamento, callback) {
 	this._pool.getConnection(function(err, connection){
-		connection.query('SELECT * FROM estacionamentos_valores ev JOIN tipos_veiculos tv ON ev.id_tipo_veiculo = tv.id WHERE id_estacionamento = ?', id_estacionamento, callback);
+		connection.query('SELECT ev.*, tv.descricao FROM estacionamentos_valores ev JOIN tipos_veiculos tv ON ev.id_tipo_veiculo = tv.id WHERE id_estacionamento = ?', id_estacionamento, callback);
 	});
 }
 
