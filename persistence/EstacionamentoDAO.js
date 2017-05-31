@@ -48,7 +48,7 @@ EstacionamentoDAO.prototype.listaPorIdUsuario = function(id_usuario, callback) {
 
 EstacionamentoDAO.prototype.listaValoresPorIdEstacionamento = function(id_estacionamento, callback) {
 	this._pool.getConnection(function(err, connection){
-		connection.query('SELECT ev.*, tv.descricao FROM estacionamentos_valores ev JOIN tipos_veiculos tv ON ev.id_tipo_veiculo = tv.id WHERE id_estacionamento = ?', id_estacionamento, callback);
+		connection.query('SELECT ev.*, tv.descricao FROM estacionamentos_valores ev JOIN tipos_veiculos tv ON ev.id_tipo_veiculo = tv.id WHERE id_estacionamento = ? ORDER BY ev.id_tipo_veiculo', id_estacionamento, callback);
 	});
 }
 
