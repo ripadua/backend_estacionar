@@ -39,6 +39,25 @@ module.exports = function(app) {
 
 	});
 
+	app.get('/estacionamentos/:id/entradas', function(req, res){
+		console.log('Processando uma listagem de entradas de um estacionamento.');
+
+		var id = req.params.id;
+
+		var connection = app.persistence.connectionFactory();
+		var entradaDAO = new app.persistence.EntradaDAO(connection);
+
+		entradaDAO.listaPorIdEstacionamento(id, function(erro, resultado){
+			if (erro) {
+				console.log('Erro ao consultar lista de entradas de um estacionamento: ' + erro);
+				res.status(500).send(erro);
+			} else {
+				res.status(200).json(resultado);
+			}
+		});
+
+	});
+
 	app.post('/estacionamentos', function(req, res){
 		console.log('Processando uma inclusão de estacionamento.');
 
