@@ -19,7 +19,9 @@ module.exports = function(app) {
 		}
 
 		var despesa = req.body["despesa"];
+		console.log(despesa);
 		despesa.data = new Date(despesa.data);
+		console.log(despesa);
 		
 		var connection = app.persistence.connectionFactory();
 		var despesaDAO = new app.persistence.DespesaDAO(connection);

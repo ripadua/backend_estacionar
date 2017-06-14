@@ -28,7 +28,7 @@ UsuarioDAO.prototype.buscaPorId = function(id, callback) {
 
 UsuarioDAO.prototype.buscaPorLoginESenha = function(usuario, callback) {
 	this._pool.getConnection(function(err, connection){
-		connection.query('SELECT * FROM usuarios u JOIN usuarios_periodos up on u.id = up.id_usuario WHERE u.login = ? and u.senha = ? and up.data_inicio <= CURDATE() and up.data_fim >= CURDATE()', [usuario.login, usuario.senha], callback);
+		connection.query('SELECT * FROM usuarios u JOIN usuarios_periodos up on u.id = up.id_usuario WHERE lower(u.login) = ? and u.senha = ? and up.data_inicio <= CURDATE() and up.data_fim >= CURDATE()', [usuario.login.toLowerCase(), usuario.senha], callback);
 		connection.release();
 	});
 }
