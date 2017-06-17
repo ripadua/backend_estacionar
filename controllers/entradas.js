@@ -20,6 +20,8 @@ module.exports = function(app) {
 		}
 
 		var entrada = req.body["entrada"];
+		console.log(entrada);
+		
 		var partes = entrada.datahora_entrada.split(" ");
 		var data = partes[0].split("/");
 		var hora = partes[1].split(":");
@@ -66,7 +68,7 @@ module.exports = function(app) {
 		var entrada = req.body["entrada"];
 
 		console.log(entrada);
-		
+
 		var partes = entrada.datahora_entrada.split(" ");
 		var data = partes[0].split("/");
 		var hora = partes[1].split(":");
