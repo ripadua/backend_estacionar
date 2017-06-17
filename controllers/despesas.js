@@ -20,10 +20,12 @@ module.exports = function(app) {
 
 		var despesa = req.body["despesa"];
 		console.log(despesa);
-		var partes = despesa.data.split(" ");
-		var data = partes[0].split("/");
-		var hora = partes[1].split(":");
-		despesa.data = new Date(data[2], data[1]-1, data[0], hora[0], hora[1], hora[2], 0);
+
+		var data_formatada = despesa.data.replace("Z", "+03:00");
+		despesa.data = new Date(data_formatada);
+
+		console.log(entrada.datahora_saida.toLocaleString('pt-BR'));
+
 		console.log(despesa);
 		
 		var connection = app.persistence.connectionFactory();
