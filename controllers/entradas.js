@@ -24,6 +24,7 @@ module.exports = function(app) {
 
 		entrada.datahora_entrada = new Date(entrada.datahora_entrada.replace("Z", "-03:00"));
 
+		console.log(entrada);
 		var partes = entrada.datahora_entrada.split(" ");
 		var data = partes[0].split("/");
 		var hora = partes[1].split(":");
