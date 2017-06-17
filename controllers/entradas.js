@@ -22,10 +22,10 @@ module.exports = function(app) {
 		var entrada = req.body["entrada"];
 		console.log(entrada);
 
-		var datahora_formatada = entrada.datahora_entrada.replace("Z", "-03:00");
+		var datahora_formatada = entrada.datahora_entrada.replace("Z", "+00:00");
 		entrada.datahora_entrada = new Date(datahora_formatada);
 
-		//console.log(entrada);
+		console.log(datahora_formatada);
 		//var partes = entrada.datahora_entrada.split(" ");
 		//var data = partes[0].split("/");
 		//var hora = partes[1].split(":");
