@@ -19,13 +19,9 @@ module.exports = function(app) {
 		}
 
 		var despesa = req.body["despesa"];
-		console.log(despesa);
-		
-		console.log(despesa.data.toLocaleString('pt-BR'));
 
 		var data_formatada = despesa.data.replace("Z", "+03:00");
 		despesa.data = new Date(data_formatada);
-
 
 		console.log(despesa);
 		

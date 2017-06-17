@@ -93,7 +93,10 @@ module.exports = function(app) {
 
 		var estacionamento = req.body["estacionamento"];
 		
-		estacionamento.datahora_inclusao = new Date();
+		var dataAtual = new Date();
+		dataAtual = new Date(dataAtual.toISOString().replace("Z", "+03:00"));
+
+		estacionamento.datahora_inclusao = dataAtual;
 
 		var connection = app.persistence.connectionFactory();
 		var estacionamentoDAO = new app.persistence.EstacionamentoDAO(connection);
@@ -141,8 +144,11 @@ module.exports = function(app) {
 		}
 
 		var estacionamento = req.body["estacionamento"];
+
+		var dataAtual = new Date();
+		dataAtual = new Date(dataAtual.toISOString().replace("Z", "+03:00"));
 		
-		estacionamento.datahora_alteracao = new Date();
+		estacionamento.datahora_alteracao = dataAtual;
 		delete estacionamento.datahora_inclusao;
 
 		var connection = app.persistence.connectionFactory();

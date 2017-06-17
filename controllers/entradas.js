@@ -20,7 +20,6 @@ module.exports = function(app) {
 		}
 
 		var entrada = req.body["entrada"];
-		console.log(entrada);
 
 		var datahora_formatada = entrada.datahora_entrada.replace("Z", "+03:00");
 		entrada.datahora_entrada = new Date(datahora_formatada);
@@ -64,8 +63,6 @@ module.exports = function(app) {
 		}
 
 		var entrada = req.body["entrada"];
-
-		console.log(entrada);
 
 		var datahora_formatada = entrada.datahora_saida.replace("Z", "+03:00");
 		entrada.datahora_saida = new Date(datahora_formatada);
