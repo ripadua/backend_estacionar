@@ -22,7 +22,7 @@ module.exports = function(app) {
 		var entrada = req.body["entrada"];
 		console.log(entrada);
 
-		var datahora_formatada = entrada.datahora_entrada.replace("Z", "-03:00");
+		var datahora_formatada = entrada.datahora_entrada.replace("Z", "+03:00");
 		entrada.datahora_entrada = new Date(datahora_formatada);
 
 		console.log(datahora_formatada);
