@@ -25,12 +25,6 @@ module.exports = function(app) {
 		var datahora_formatada = entrada.datahora_entrada.replace("Z", "+03:00");
 		entrada.datahora_entrada = new Date(datahora_formatada);
 
-		console.log(datahora_formatada);
-		//var partes = entrada.datahora_entrada.split(" ");
-		//var data = partes[0].split("/");
-		//var hora = partes[1].split(":");
-		//entrada.datahora_entrada = new Date(data[2], data[1]-1, data[0], hora[0], hora[1], hora[2], 0);
-
 		console.log(entrada);
 
 		var connection = app.persistence.connectionFactory();
@@ -73,15 +67,13 @@ module.exports = function(app) {
 
 		console.log(entrada);
 
-		var partes = entrada.datahora_entrada.split(" ");
-		var data = partes[0].split("/");
-		var hora = partes[1].split(":");
-		entrada.datahora_entrada = new Date(data[2], data[1]-1, data[0], hora[0], hora[1], hora[2], 0);
+		var datahora_formatada = entrada.datahora_saida.replace("Z", "+03:00");
+		entrada.datahora_saida = new Date(datahora_formatada);
 		
-		partes = entrada.datahora_saida.split(" ");
-		data = partes[0].split("/");
-		hora = partes[1].split(":");
-		entrada.datahora_saida = new Date(data[2], data[1]-1, data[0], hora[0], hora[1], hora[2], 0);
+		//partes = entrada.datahora_saida.split(" ");
+		//data = partes[0].split("/");
+		//hora = partes[1].split(":");
+		//entrada.datahora_saida = new Date(data[2], data[1]-1, data[0], hora[0], hora[1], hora[2], 0);
 		
 		console.log(entrada);
 
