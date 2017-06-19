@@ -22,6 +22,10 @@ EntradaDAO.prototype.lista = function(callback) {
 
 EntradaDAO.prototype.listaPorIdEstacionamento = function(id, callback) {
 	this._pool.getConnection(function(err, connection){
+		if (err) {
+			console.log(err);
+			return;
+		}
 		connection.query('SELECT * FROM entradas WHERE id_estacionamento = ?', id, callback);
 	});
 }
