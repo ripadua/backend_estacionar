@@ -64,12 +64,12 @@ module.exports = function(app) {
 
 		var entrada = req.body["entrada"];
 
-		var datahora_entrada_temp = entrada.datahora_entrada;
-
-		delete entrada.datahora_entrada;
+		var datahora_entrada_formatada = entrada.datahora_entrada.replace("Z", "+03:00");
+		entrada.datahora_entrada = new Date(datahora_entrada_formatada);
 		
-		var datahora_formatada = entrada.datahora_saida.replace("Z", "+03:00");
-		entrada.datahora_saida = new Date(datahora_formatada);
+		
+		var datahora_saida_formatada = entrada.datahora_saida.replace("Z", "+03:00");
+		entrada.datahora_saida = new Date(datahora_saida_formatada);
 
 		console.log(entrada);
 
@@ -81,7 +81,6 @@ module.exports = function(app) {
 				console.log('Erro ao finalizar entrada: ' + erro);
 				res.status(500).send(erro);
 			} else {
-				entrada.datahora_entrada = datahora_entrada_temp;
 				res.status(200).json(entrada);
 			}
 		});
