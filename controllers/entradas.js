@@ -64,6 +64,8 @@ module.exports = function(app) {
 
 		var entrada = req.body["entrada"];
 
+		var datahora_entrada_temp = entrada.datahora_entrada;
+
 		delete entrada.datahora_entrada;
 		
 		var datahora_formatada = entrada.datahora_saida.replace("Z", "+03:00");
@@ -79,6 +81,7 @@ module.exports = function(app) {
 				console.log('Erro ao finalizar entrada: ' + erro);
 				res.status(500).send(erro);
 			} else {
+				entrada.datahora_entrada = datahora_entrada_temp;
 				res.status(200).json(entrada);
 			}
 		});
