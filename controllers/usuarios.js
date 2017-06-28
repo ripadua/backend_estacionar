@@ -23,6 +23,8 @@ module.exports = function(app) {
 
 		var usuario = req.body["usuario"];
 
+		console.log(usuario);
+
 		var connection = app.persistence.connectionFactory();
 		var usuarioDAO = new app.persistence.UsuarioDAO(connection);
 
