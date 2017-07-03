@@ -2,7 +2,7 @@ var logger = require('../services/Logger.js');
 
 module.exports = function(app) {
 
-	app.post('/despesas', function(req, res){
+	app.post('/api/despesas', function(req, res){
 		console.log('Processando uma inclusão de despesa.');
 
 		req.assert("despesa.id_estacionamento", "O id do estacionamento é obrigatório.").notEmpty();
@@ -24,7 +24,7 @@ module.exports = function(app) {
 		despesa.data = new Date(data_formatada);
 
 		console.log(despesa);
-		
+
 		var connection = app.persistence.connectionFactory();
 		var despesaDAO = new app.persistence.DespesaDAO(connection);
 

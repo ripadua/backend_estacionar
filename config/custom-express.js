@@ -20,7 +20,7 @@ module.exports = function() {
 
 	app.use(expressValidator());
 
-	//app.use(express.static('public'));
+	app.use(express.static('public'));
 
 	app.use(function(req, res, next) {
 	  res.header("Access-Control-Allow-Origin", "*");

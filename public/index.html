@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html>
+<html ng-app="Estacionar">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>Estacionar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -55,7 +52,7 @@ desired effect
 <div class="wrapper">
 
   <!-- Main Header -->
-  <header class="main-header">
+  <header class="main-header" ng-if="globals.currentUser">
 
     <!-- Logo -->
     <a href="index2.html" class="logo">
@@ -223,7 +220,7 @@ desired effect
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+  <aside class="main-sidebar" ng-if="globals.currentUser">
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -276,31 +273,15 @@ desired effect
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" ng-class="{'no-margin-left': !globals.currentUser}">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Your Page Content Here -->
-
-    </section>
+    <div ng-view></div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  <footer class="main-footer" ng-show="globals.currentUser">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
       Anything you want
@@ -397,9 +378,36 @@ desired effect
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
 
+<script src="//code.angularjs.org/1.6.4/angular.js"></script>
+<script src="//code.angularjs.org/1.6.4/angular-route.js"></script>
+<script src="//code.angularjs.org/1.6.4/angular-cookies.js"></script>
+<script src="//code.angularjs.org/1.6.4/angular-animate.js"></script>
+<script src="//code.angularjs.org/1.6.4/angular-touch.js"></script>
+<script src="plugins/uiBootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/directives.js"></script>
+<script src="modules/authentication/services.js"></script>
+<script src="modules/authentication/controllers.js"></script>
+<script src="modules/home/controllers.js"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+  <div id="mydiv" style="display:none" data-loading>
+      <img src="assets/images/ajax-loader.gif" class="ajax-loader"/>
+  </div>
 </body>
 </html>
+
+<script type="text/ng-template" id="modalAlert.html">
+  <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">Estacionar</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    {{error}}
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+  </div>
+</script>

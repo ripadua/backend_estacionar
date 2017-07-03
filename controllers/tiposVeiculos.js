@@ -2,7 +2,7 @@ var logger = require('../services/Logger.js');
 
 module.exports = function(app) {
 
-	app.get('/tiposVeiculos', function(req, res){
+	app.get('/api/tiposVeiculos', function(req, res){
 		console.log('Listando tipos de veiculos');
 
 		var connection = app.persistence.connectionFactory();
@@ -17,5 +17,5 @@ module.exports = function(app) {
 			}
 		});
 	});
-	
+
 };

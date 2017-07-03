@@ -2,7 +2,7 @@ var logger = require('../services/Logger.js');
 
 module.exports = function(app) {
 
-	app.post('/entradas', function(req, res){
+	app.post('/api/entradas', function(req, res){
 		console.log('Processando uma inclusão de entrada.');
 
 		req.assert("entrada.id_tipo_veiculo", "O tipo de veiculo é obrigatório.").notEmpty();
@@ -40,7 +40,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.put('/entradas', function(req, res){
+	app.put('/api/entradas', function(req, res){
 		console.log('Processando uma finalização de entrada.');
 
 		req.assert("entrada.id", "O id da entrada é obrigatória.").notEmpty();
@@ -66,8 +66,8 @@ module.exports = function(app) {
 
 		var datahora_entrada_formatada = entrada.datahora_entrada.replace("Z", "+03:00");
 		entrada.datahora_entrada = new Date(datahora_entrada_formatada);
-		
-		
+
+
 		var datahora_saida_formatada = entrada.datahora_saida.replace("Z", "+03:00");
 		entrada.datahora_saida = new Date(datahora_saida_formatada);
 

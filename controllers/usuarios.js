@@ -1,12 +1,12 @@
 var logger = require('../services/Logger.js');
 
 module.exports = function(app) {
-	app.get('/usuarios', function(req, res){
+	app.get('/api/usuarios', function(req, res){
 		console.log('Recebida requisição de teste.');
 		res.send('OK.');
 	});
 
-	app.post('/usuarios/autenticarUsuario', function(req, res){
+	app.post('/api/usuarios/autenticarUsuario', function(req, res){
 
 		console.log('Processando uma autenticação de usuário.');
 

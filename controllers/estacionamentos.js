@@ -2,7 +2,7 @@ var logger = require('../services/Logger.js');
 
 module.exports = function(app) {
 
-	app.get('/estacionamentos/:id_usuario', function(req, res){
+	app.get('/api/estacionamentos/:id_usuario', function(req, res){
 		console.log('Processando uma consulta de estacionamento.');
 
 		var id_usuario = req.params.id_usuario;
@@ -20,7 +20,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/estacionamentos/:id/valores', function(req, res){
+	app.get('/api/estacionamentos/:id/valores', function(req, res){
 		console.log('Processando uma consulta de valores de estacionamento.');
 
 		var id = req.params.id;
@@ -39,7 +39,7 @@ module.exports = function(app) {
 
 	});
 
-	app.get('/estacionamentos/:id/entradas', function(req, res){
+	app.get('/api/estacionamentos/:id/entradas', function(req, res){
 		console.log('Processando uma listagem de entradas de um estacionamento.');
 
 		var id = req.params.id;
@@ -58,7 +58,7 @@ module.exports = function(app) {
 
 	});
 
-	app.get('/estacionamentos/:id/despesas', function(req, res){
+	app.get('/api/estacionamentos/:id/despesas', function(req, res){
 		console.log('Processando uma listagem de despesas de um estacionamento.');
 
 		var id = req.params.id;
@@ -77,7 +77,7 @@ module.exports = function(app) {
 
 	});
 
-	app.post('/estacionamentos', function(req, res){
+	app.post('/api/estacionamentos', function(req, res){
 		console.log('Processando uma inclusão de estacionamento.');
 
 		req.assert("estacionamento.nome", "O nome do estacionamento é obrigatório.").notEmpty();
@@ -92,7 +92,7 @@ module.exports = function(app) {
 		}
 
 		var estacionamento = req.body["estacionamento"];
-		
+
 		var dataAtual = new Date();
 		dataAtual = new Date(dataAtual.toISOString().replace("Z", "+03:00"));
 
@@ -129,7 +129,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.put('/estacionamentos', function(req, res){
+	app.put('/api/estacionamentos', function(req, res){
 		console.log('Processando uma atualização de estacionamento.');
 
 		req.assert("estacionamento.nome", "O nome do estacionamento é obrigatório.").notEmpty();
@@ -147,7 +147,7 @@ module.exports = function(app) {
 
 		var dataAtual = new Date();
 		dataAtual = new Date(dataAtual.toISOString().replace("Z", "+03:00"));
-		
+
 		estacionamento.datahora_alteracao = dataAtual;
 		delete estacionamento.datahora_inclusao;
 
