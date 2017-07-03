@@ -14,11 +14,16 @@ angular.module('Authentication')
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
                     $location.path('/');
                 } else if (response.status = 401) {
-                    $scope.error = "Usuário ou senha inválida.";
-                    $uibModal.open({
+                    var modalInstance = $uibModal.open({
                         animation: true,
                         templateUrl: 'modalAlert.html',
-                        size: 'sm'
+                        size: 'sm',
+                        controller: 'PopupController',
+                        resolve: {
+                            message: function() {
+                                return 'Usuário e/ou senha inválidos.';
+                            }
+                        }
                     });
                 } else {
 
