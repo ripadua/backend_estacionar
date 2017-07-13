@@ -8,11 +8,11 @@ angular.module('Authentication')
         var service = {};
 
         service.Login = function (username, password, callback) {
-
+            var encryptedPassword = CryptoJS.SHA256(password).toString();
             var userData = {
                 usuario: {
                     login: username,
-                    senha: password
+                    senha: encryptedPassword
                 }
             }
             /* Use this for real authentication
